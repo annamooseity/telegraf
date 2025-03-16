@@ -190,6 +190,10 @@ func (r *deliveryInfo) Delivered() bool {
 	return r.rejected == 0
 }
 
+func (r *deliveryInfo) DeliveredToAtLeast(n int) bool {
+	return r.accepted >= n
+}
+
 func (d *trackingData) ID() telegraf.TrackingID {
 	return d.Id
 }
