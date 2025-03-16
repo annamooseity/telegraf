@@ -29,6 +29,7 @@ var (
 	// 30 Seconds is the default used by paho.mqtt.golang
 	defaultConnectionTimeout      = config.Duration(30 * time.Second)
 	defaultMaxUndeliveredMessages = 1000
+	defaultMaxRejections          = 0
 )
 
 type MQTTConsumer struct {
@@ -43,6 +44,7 @@ type MQTTConsumer struct {
 	KeepAliveInterval      config.Duration      `toml:"keepalive"`
 	PingTimeout            config.Duration      `toml:"ping_timeout"`
 	MaxUndeliveredMessages int                  `toml:"max_undelivered_messages"`
+	MaxRejections          int                  `toml:"max_rejections"`
 	PersistentSession      bool                 `toml:"persistent_session"`
 	ClientTrace            bool                 `toml:"client_trace"`
 	ClientID               string               `toml:"client_id"`
