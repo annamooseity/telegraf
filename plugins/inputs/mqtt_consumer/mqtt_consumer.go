@@ -229,6 +229,11 @@ func (m *MQTTConsumer) onConnectionLost(_ mqtt.Client, err error) {
 func (m *MQTTConsumer) onDelivered(track telegraf.DeliveryInfo) {
 	<-m.sem
 
+	if track.RejectedFromMoreThan(m.MaxRejections) {
+		m.Log.Debugf("message was rejected from >%d outputs", m.MaxRejections)
+		return
+	}
+
 	m.messagesMutex.Lock()
 	defer m.messagesMutex.Unlock()
 

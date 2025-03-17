@@ -73,9 +73,9 @@ type DeliveryInfo interface {
 	// Delivered returns true if the metric was processed successfully.
 	Delivered() bool
 
-	// DeliveredToAtLeast returns true if the metric was successfully sent
-	// to _at least_ `n` outputs
-	DeliveredToAtLeast(n int) bool
+	// RejectedFromMoreThan returns true if the metric was rejected from
+	// more than `n` outputs
+	RejectedFromMoreThan(n int) bool
 }
 
 // TrackingAccumulator is an Accumulator that provides a signal when the
